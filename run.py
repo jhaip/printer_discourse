@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect
 #from Adafruit_Thermal import *
 import twilio.twiml
-import logging
+import logging, socket
 
 #printer = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
 
@@ -29,6 +29,16 @@ def hello_monkey():
  
     from_number = request.values.get('From', None)
     in_message = request.values.get('Body', None)
+
+    if (in_message == "give me the ip") {
+        print "Attempting to print IP"
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(('8.8.8.8', 0))
+            in_message = s.getsockname()[0]
+        except:
+            in_message = 'Network is unreachable.'
+    }
 
     logging.basicConfig(filename='log.log',level=logging.WARN,format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
     logMessage(from_number,in_message)

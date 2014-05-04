@@ -8,6 +8,7 @@
 Flask>=0.8
 twilio>=3.3.6
 pyserial
+logging
 ```
 
 6. `bin/pip install -r requirements.txt`

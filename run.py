@@ -26,6 +26,8 @@ def logMessage(from_number,message):
  
 @app.route("/", methods=['GET', 'POST'])
 def hello_monkey():
+
+    message = "Thanks for participating!\n- The Printer Discourse"
  
     from_number = request.values.get('From', None)
     in_message = request.values.get('Body', None)
@@ -38,6 +40,7 @@ def hello_monkey():
             in_message = s.getsockname()[0]
         except:
             in_message = 'Network is unreachable.'
+        message = in_message
 
     logging.basicConfig(filename='log.log',level=logging.WARN,format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
     logMessage(from_number,in_message)
@@ -48,7 +51,6 @@ def hello_monkey():
 
     #thermalPrintMessage(in_message)
 
-    message = "Thanks for participating!\n- The Printer Discourse"
     resp = twilio.twiml.Response()
     resp.message(message)
  

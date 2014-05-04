@@ -1,21 +1,45 @@
 from flask import Flask, request, redirect
+#from Adafruit_Thermal import *
 import twilio.twiml
+import logging
+
+#printer = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
+
+question = "My greatest fear is"
  
 app = Flask(__name__)
+
+def thermalPrintMessage(message):
+    printer.setSize('S')
+    printer.println('')
+    printer.println('')
+    printer.println(question)
+    printer.setSize('M')
+    printer.println(message)
+    printer.setSize('S')
+    printer.println('')
+    printer.println('')
+    printer.println('_______________________________')
+
+def logMessage(from_number,message):
+    logging.warn(from_number+"\t"+message)
  
 @app.route("/", methods=['GET', 'POST'])
 def hello_monkey():
-    """Respond and greet the caller by name."""
  
     from_number = request.values.get('From', None)
     in_message = request.values.get('Body', None)
+
+    logging.basicConfig(filename='log.log',level=logging.WARN,format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+    logMessage(from_number,in_message)
 
     print "Message from:", from_number
     print in_message
     print "---"
 
-    message = "Thanks for the message!"
- 
+    #thermalPrintMessage(in_message)
+
+    message = "Thanks for participating!\n- The Printer Discourse"
     resp = twilio.twiml.Response()
     resp.message(message)
  

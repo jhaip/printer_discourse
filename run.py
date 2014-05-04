@@ -30,7 +30,7 @@ def hello_monkey():
     from_number = request.values.get('From', None)
     in_message = request.values.get('Body', None)
 
-    if in_message == "give me the ip"
+    if in_message == "give me the ip":
         print "Attempting to print IP"
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

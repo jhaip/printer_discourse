@@ -30,7 +30,7 @@ def hello_monkey():
     from_number = request.values.get('From', None)
     in_message = request.values.get('Body', None)
 
-    if (in_message == "give me the ip") {
+    if in_message == "give me the ip"
         print "Attempting to print IP"
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -38,7 +38,6 @@ def hello_monkey():
             in_message = s.getsockname()[0]
         except:
             in_message = 'Network is unreachable.'
-    }
 
     logging.basicConfig(filename='log.log',level=logging.WARN,format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
     logMessage(from_number,in_message)

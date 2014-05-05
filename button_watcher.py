@@ -1,8 +1,9 @@
 #!/usr/bin/python
 
+from __future__ import print_function
 import RPi.GPIO as GPIO
+import subprocess, time, socket
 from Adafruit_Thermal import *
-import socket
 
 ledPin       = 18
 buttonPin    = 23
@@ -16,10 +17,13 @@ printer      = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
 
 # Called when button is briefly tapped.  Prints out the IP address
 def tap():
-  #GPIO.output(ledPin, GPIO.HIGH)  # LED on while working
+  GPIO.output(ledPin, GPIO.HIGH)  # LED on while working
   #subprocess.call(["python", "timetemp.py"])
   print "button tapped"
-  #GPIO.output(ledPin, GPIO.LOW)
+  printer.feed(3)
+  printer.println("button tapped!")
+  printer.feed(3)
+  GPIO.output(ledPin, GPIO.LOW)
 
 
 # Called when button is held down.  Prints image, invokes shutdown process.

@@ -13,4 +13,4 @@ try:
 except:
     printer.println('Network is unreachable.')
 
-printer.feed(1)
+printer.feed(3)

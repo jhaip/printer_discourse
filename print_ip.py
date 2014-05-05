@@ -9,7 +9,9 @@ printer.feed(3)
 try:
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(('8.8.8.8', 0))
-    printer.println(s.getsockname()[0])
+    ipstr = s.getsockname()[0]
+    printer.println(ipstr)
+    print "printed ip: ", ipstr
 except:
     printer.println('Network is unreachable.')
 

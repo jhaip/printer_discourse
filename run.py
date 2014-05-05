@@ -1,9 +1,9 @@
 from flask import Flask, request, redirect
-#from Adafruit_Thermal import *
+from Adafruit_Thermal import *
 import twilio.twiml
 import logging, socket
 
-#printer = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
+printer = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
 
 question = "My greatest fear is"
  
@@ -11,15 +11,13 @@ app = Flask(__name__)
 
 def thermalPrintMessage(message):
     printer.setSize('S')
-    printer.println('')
-    printer.println('')
+    # printer.feed(1)
     printer.println(question)
     printer.setSize('M')
     printer.println(message)
     printer.setSize('S')
-    printer.println('')
-    printer.println('')
-    printer.println('_______________________________')
+    printer.feed(1)
+    printer.println('________________________________')
 
 def logMessage(from_number,message):
     logging.warn(from_number+"\t"+message)
@@ -49,7 +47,7 @@ def hello_monkey():
     print in_message
     print "---"
 
-    #thermalPrintMessage(in_message)
+    thermalPrintMessage(in_message)
 
     resp = twilio.twiml.Response()
     resp.message(message)

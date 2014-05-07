@@ -19,9 +19,20 @@ printer      = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
 def tap():
     GPIO.output(ledPin, GPIO.HIGH)  # LED on while working
     #subprocess.call(["python", "timetemp.py"])
-    printer.feed(3)
-    printer.println("button tapped!")
-    printer.feed(3)
+    #printer.feed(3)
+    #printer.println("button tapped!")
+    #printer.feed(3)
+    # Show IP address (if network is available)
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(('8.8.8.8', 0))
+        printer.print('My IP address is ' + s.getsockname()[0])
+        printer.feed(3)
+    except:
+        printer.boldOn()
+        printer.println('Network is unreachable.')
+        printer.boldOff()
+        printer.feed(3)
     GPIO.output(ledPin, GPIO.LOW)
 
 

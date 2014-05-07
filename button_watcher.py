@@ -77,7 +77,7 @@ except:
     printer.print('Connect display and keyboard\n'
     'for network troubleshooting.')
     printer.feed(3)
-    exit(0)
+    #exit(0)
 
 # Print greeting image
 # printer.printImage(Image.open('gfx/hello.png'), True)

@@ -30,9 +30,10 @@ def tap():
         printer.feed(3)
     except:
         printer.boldOn()
-        printer.println('Network is unreachable.')
+        printer.println('Network is unreachable. Restarting the wifi')
         printer.boldOff()
         printer.feed(3)
+        subprocess.call(["sudo", "/etc/init.d/networking", "restart"])
     GPIO.output(ledPin, GPIO.LOW)
 
 
@@ -70,6 +71,8 @@ try:
     s.connect(('8.8.8.8', 0))
     printer.print('My IP address is ' + s.getsockname()[0])
     printer.feed(3)
+    #printer.println("running startup script")
+    #subprocess.call(["startprinter.sh","1"])
 except:
     printer.boldOn()
     printer.println('Network is unreachable.')

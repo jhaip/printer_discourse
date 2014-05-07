@@ -1,11 +1,11 @@
 from flask import Flask, request, redirect
 from Adafruit_Thermal import *
 import twilio.twiml
-import logging, socket
+import logging, socket, sys
 
 printer = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
 
-question = "My greatest fear is"
+question = str(sys.argv[1])
  
 app = Flask(__name__)
 

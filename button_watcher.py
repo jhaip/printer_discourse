@@ -72,6 +72,8 @@ try:
     printer.print('My IP address is ' + s.getsockname()[0])
     printer.feed(3)
     printer.println("running startup script")
+    print str(sys.argv[1])
+    print str(sys.argv[2])
     subprocess.call(["startprinter.sh",str(sys.argv[1]),str(sys.argv[2])])
 except:
     printer.boldOn()

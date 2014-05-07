@@ -71,8 +71,8 @@ try:
     s.connect(('8.8.8.8', 0))
     printer.print('My IP address is ' + s.getsockname()[0])
     printer.feed(3)
-    #printer.println("running startup script")
-    #subprocess.call(["startprinter.sh","1"])
+    printer.println("running startup script")
+    subprocess.call(["startprinter.sh",str(sys.argv[1]),str(sys.argv[2])])
 except:
     printer.boldOn()
     printer.println('Network is unreachable.')

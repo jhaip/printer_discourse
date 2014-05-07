@@ -9,6 +9,9 @@ question = str(sys.argv[1])
  
 app = Flask(__name__)
 
+printer.setSize('S')
+printer.println("listening for messages!")
+
 def thermalPrintMessage(message):
     printer.setSize('S')
     # printer.feed(1)

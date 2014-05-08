@@ -15,7 +15,26 @@ lastId       = '1'   # State information passed to/from interval script
 printer      = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
 
 
-
+# Called when button is briefly tapped.  Prints out the IP address
+def tap():
+    GPIO.output(ledPin, GPIO.HIGH)  # LED on while working
+    #subprocess.call(["python", "timetemp.py"])
+    #printer.feed(3)
+    #printer.println("button tapped!")
+    #printer.feed(3)
+    # Show IP address (if network is available)
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(('8.8.8.8', 0))
+        printer.print('My IP address is ' + s.getsockname()[0])
+        printer.feed(3)
+    except:
+        printer.boldOn()
+        printer.println('Network is unreachable. Restarting the wifi')
+        printer.boldOff()
+        printer.feed(3)
+        subprocess.call(["sudo", "/etc/init.d/networking", "restart"])
+    GPIO.output(ledPin, GPIO.LOW)
 
 
 # Called when button is held down.  Prints image, invokes shutdown process.

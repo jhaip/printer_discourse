@@ -3,24 +3,26 @@
 question="..."
 SUBDOMAINNAME="$(hostname)"
 
+echo "$SUBDOMAINNAME"
+
 if [ "$SUBDOMAINNAME" = "discourse8" ]; then
-    question="My best feature is"
-else if [ "$SUBDOMAINNAME" = "discourse10" ]; then
-    question="I want to change"
-else if [ "$SUBDOMAINNAME" = "discourse6" ]; then
-    question="I want you to know"
-else if [ "$SUBDOMAINNAME" = "discourse4" ]; then
-    question="I am afraid of"
-else if [ "$SUBDOMAINNAME" = "discourse0" ]; then
-    question="I identify with"
-else if [ "$SUBDOMAINNAME" = "discourse7" ]; then
-    question="I am grateful for"
-else if [ "$SUBDOMAINNAME" = "discourse5" ]; then
-    question="I am happiest when"
-else if [ "$SUBDOMAINNAME" = "discourse2" ]; then
-    question="I depend on"
+	question="My best feature is"
+elif [ "$SUBDOMAINNAME" = "discourse10" ]; then
+	question="I want to change"
+elif [ "$SUBDOMAINNAME" = "discourse6" ]; then
+	question="I want you to know"
+elif [ "$SUBDOMAINNAME" = "discourse4" ]; then
+	question="I am afraid of"
+elif [ "$SUBDOMAINNAME" = "discourse0" ]; then
+	question="I identify with"
+elif [ "$SUBDOMAINNAME" = "discourse7" ]; then
+	question="I am grateful for"
+elif [ "$SUBDOMAINNAME" = "discourse5" ]; then
+	question="I am happiest when"
+elif [ "$SUBDOMAINNAME" = "discourse2" ]; then
+	question="I depend on"
 else
-    question="...."
+	question="...."
 fi
 
 /home/pi/ngrok -subdomain $SUBDOMAINNAME 5000 &

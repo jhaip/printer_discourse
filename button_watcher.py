@@ -33,7 +33,9 @@ def tap():
         printer.println('Network is unreachable. Restarting the wifi')
         printer.boldOff()
         printer.feed(3)
+        # testing
         subprocess.call(["sudo", "/etc/init.d/networking", "restart"])
+        # this should work
     GPIO.output(ledPin, GPIO.LOW)
 
 

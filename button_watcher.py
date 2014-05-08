@@ -63,7 +63,7 @@ GPIO.output(ledPin, GPIO.HIGH)
 
 # Processor load is heavy at startup; wait a moment to avoid
 # stalling during greeting.
-time.sleep(30)
+time.sleep(10)
 
 # Show IP address (if network is available)
 try:

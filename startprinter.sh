@@ -21,6 +21,8 @@ elif [ "$SUBDOMAINNAME" = "discourse5" ]; then
 	question="I am happiest when"
 elif [ "$SUBDOMAINNAME" = "discourse2" ]; then
 	question="I depend on"
+elif [ "$SUBDOMAINNAME" = "discourse9" ]; then
+    question="I overcame"
 else
 	question="...."
 fi
